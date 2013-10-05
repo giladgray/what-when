@@ -1,0 +1,17 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+standard-app-packages
+autopublish
+insecure
+preserve-inputs
+coffeescript
+underscore
+stylus
+accounts-ui
+accounts-facebook
+bootstrap-datetimepicker
+font-awesome
+bootstrap-3
