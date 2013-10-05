@@ -9,7 +9,14 @@
 			{{> header}}
 			{{> history}}
 		{{else}}
-			{{> loginPlease}}
+			<div id="login" class="panel panel-primary">
+				<h1>You Did What, When?</h1>
+				{{#if loggingIn}}
+				<i class="icon-spinner icon-spin icon-4x"></i>
+				{{else}}
+					{{> loginPlease}}
+				{{/if}}
+			</div>
 		{{/if}}
 	</div>
 </body>
@@ -23,7 +30,7 @@
 			</h1>
 			<div id="what">
 				<input type="text" name="what" class="form-control" placeholder="What">
-				<span class="add-on"><i class="icon-asterisk"></i></span>
+				<!-- <span class="add-on"><i class="icon-asterisk"></i></span> -->
 			</div>
 			<div id="when" class="input-append date">
 				<input type="text" name="when" class="form-control" placeholder="When">
@@ -64,16 +71,14 @@
 </template>
 
 <template name="loginPlease">
-	<div id="login" class="panel panel-primary">
-		<h1>You Did What, When?</h1>
-		<h3>Remember the common things.</h3>
-		<p>
-			When was the last time you cut your fingernails?<br/> Got a haircut? <em>Changed your sheets?</em>
-		</p>
-		<p>
-			Record the little things you do all the time but never think about. Instantly review your history and answer those stupid questions.
-		</p>
-		<br>
-		{{loginButtons}}
-	</div>
+	<p>
+		When was the last time you cut your fingernails?<br/>
+		Got a haircut? <em>Changed your sheets?</em>
+	</p>
+	<p>
+		Record the little things you do all the time but never think about. Instantly review your history and answer those stupid questions.
+	</p>
+	<h3>Remember the common things.</h3>
+	<br>
+	{{loginButtons}}
 </template>
