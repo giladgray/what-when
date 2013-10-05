@@ -4,7 +4,8 @@
     "basePackages": {
       "bootstrap-3": {},
       "font-awesome": {},
-      "bootstrap-datetimepicker": {}
+      "bootstrap-datetimepicker": {},
+      "moment": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -12,10 +13,20 @@
         "tag": "v0.3.5",
         "commit": "47996f67f3987c9f82117394effcbe1586a4fe29"
       },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v3.2.1",
+        "commit": "38bdfff72dfb8857b272f9a9b056045d6a015489"
+      },
       "bootstrap-datetimepicker": {
         "git": "https://github.com/Elfoslav/bootstrap-datetimepicker.git",
         "tag": "v0.0.6",
         "commit": "728e5d603c377652e6909e180358364c46ce95ff"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.2.1",
+        "commit": "9ee12e714afe56b189f53076447b7b54f3012065"
       }
     }
   }

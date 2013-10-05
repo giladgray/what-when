@@ -1,0 +1,117 @@
+@import './positions.styl'
+
+size($w, $h = $w)
+	width: $w
+	height: $h
+
+transition()
+	-webkit-transition: arguments
+	-moz-transition: arguments
+	-o-transition: arguments
+	transition: arguments
+
+// h1, #what, #when
+// 	font-size: 40px
+// 	line-height: 1em
+
+$giantFont = 40px
+$bigFont = 30px
+$regFont = 20px
+$smallFont = 16px
+
+body
+	background: #eee
+
+.container
+	width: 600px
+	margin: $giantFont auto
+
+	> h3
+		margin-top: 0
+
+	h1
+		font-weight: 900
+		margin-top: 0
+
+#new-entry
+	font-size: $giantFont
+	line-height: 1em
+	padding: .5em 1em
+
+	h1
+		padding: 6px 12px
+
+	#what, #when, #how
+		margin: .5em 0
+
+	#what, #when
+		position: relative
+
+		input, button
+			font-size: $giantFont
+			line-height: 1em
+			text-align: center
+			height: auto
+
+		.add-on
+			absolute: right 15px bottom 15px
+
+			i
+				size: 1em
+
+	#how
+		textarea
+			font-size: $bigFont
+			height: 100%
+			max-width: 100%
+			max-height: 224px
+
+	#done
+		button
+			font-size: $bigFont
+
+			&#did
+				font-weight: bold
+
+	.close
+		font-size: $bigFont;
+
+	&.mini
+		h1
+			padding-left: 1em
+		h1, #what, #when
+			display: inline-block
+			width: auto
+			margin: 0
+			float: left
+
+			input
+				display: inline-block
+				width: 3.3em
+			i
+				display: none
+
+		#how, #done
+			display: none
+
+#login
+	font-size: $smallFont
+	padding: 2em
+
+	.login-button
+		font-size: $bigFont
+
+	.login-image
+		top: 50%
+		margin-top: -8px
+
+#history
+	font-size: $regFont
+
+	.entry
+		h3
+			margin: .25em 0
+
+
+body
+	margin: auto

@@ -1,0 +1,79 @@
+<head>
+  <title>What, When?</title>
+</head>
+
+<body>
+	<div class="container text-center">
+		{{#if currentUser}}
+			<h4 class="text-right">{{loginButtons}}</h4>
+			{{> header}}
+			{{> history}}
+		{{else}}
+			{{> loginPlease}}
+		{{/if}}
+	</div>
+</body>
+
+<template name="header">
+	<div class="panel panel-primary">
+		<form id="new-entry" role="form" class="text-center clearfix">
+			<h1>
+				You Did
+				<span class="close"><i class="icon-collapse-alt"></i></span>
+			</h1>
+			<div id="what">
+				<input type="text" name="what" class="form-control" placeholder="What">
+				<span class="add-on"><i class="icon-asterisk"></i></span>
+			</div>
+			<div id="when" class="input-append date">
+				<input type="text" name="when" class="form-control" placeholder="When">
+				<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+			</div>
+			<div id="how">
+				<textarea name="how" class="form-control" placeholder="And how?"></textarea>
+			</div>
+			<div id="done" class="text-right">
+				<button id="and-how" class="btn btn-lg pull-left">How <i class="icon-question-sign"></i></button>
+				<button id="did" class="btn btn-success btn-lg"><i class="icon-thumbs-up"></i> Did it!</button>
+			</div>
+		</form>
+	</div>
+</template>
+
+<template name="history">
+	<div id="history">
+		<h1>Things you've done lately</h1>
+		{{#ifEmpty entries}}
+		<em>You have done nothing. How embarrassing.</em>
+		{{else}}
+		<ul class="list-group">
+			{{#each entries}}
+				{{> entry}}
+			{{/each}}
+		</ul>
+		{{/ifEmpty}}
+	</div>
+</template>
+
+<template name="entry">
+	<li class="list-group-item entry">
+		<div class="text-muted">{{date when}}</div>
+		<h3>{{what}}</h3>
+		<small>{{how}}</small>
+	</li>
+</template>
+
+<template name="loginPlease">
+	<div id="login" class="panel panel-primary">
+		<h1>You Did What, When?</h1>
+		<h3>Remember the common things.</h3>
+		<p>
+			When was the last time you cut your fingernails?<br/> Got a haircut? <em>Changed your sheets?</em>
+		</p>
+		<p>
+			Record the little things you do all the time but never think about. Instantly review your history and answer those stupid questions.
+		</p>
+		<br>
+		{{loginButtons}}
+	</div>
+</template>
