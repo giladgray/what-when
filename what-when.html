@@ -6,7 +6,9 @@
 	<div class="container text-center">
 		{{#if currentUser}}
 			<h4 class="text-right">{{loginButtons}}</h4>
-			{{> header}}
+			<div class="panel panel-primary">
+				{{> header}}
+			</div>
 			{{> history}}
 		{{else}}
 			<div id="login" class="panel panel-primary">
@@ -22,28 +24,74 @@
 </body>
 
 <template name="header">
-	<div class="panel panel-primary">
-		<form id="new-entry" role="form" class="text-center clearfix">
-			<h1>
-				You Did
-				<span class="close"><i class="icon-collapse-alt"></i></span>
-			</h1>
-			<div id="what">
-				<input type="text" name="what" class="form-control" placeholder="What">
-				<!-- <span class="add-on"><i class="icon-asterisk"></i></span> -->
+	<form id="new-entry" class="text-center clearfix">
+		<h1>
+			You Did
+		</h1>
+		<div id="what">
+			<button class="btn btn-question btn-primary {{#if what}}filled{{/if}} ">
+				<span class="word">
+					<span>What </span><i class="icon-asterisk"></i>
+				</span>
+				{{#if what}}
+				<span class="value">{{what}}</span>
+				{{/if}}
+			</button>
+			{{> what}}
+		</div>
+		<div id="when">
+			<button class="btn btn-question btn-primary {{#if when}}filled{{/if}}">
+				<span class="word">
+					<span>When </span><i class="icon-time"></i>
+				</span>
+				{{#if when}}
+				<span class="value">{{fromNow when}}</span>
+				{{/if}}}
+			</button>
+			{{> when}}
+		</div>
+		<div id="done" class="text-right">
+			<div id="new-data">
+				<button id="did" class="btn btn-success btn-lg {{#unless ready}}disabled{{/unless}}"><i class="icon-thumbs-up"></i> Did it!</button>
 			</div>
-			<div id="when" class="input-append date">
-				<input type="text" name="when" class="form-control" placeholder="When">
-				<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
-			</div>
-			<div id="how">
-				<textarea name="how" class="form-control" placeholder="And how?"></textarea>
-			</div>
-			<div id="done" class="text-right">
-				<button id="and-how" class="btn btn-lg pull-left">How <i class="icon-question-sign"></i></button>
-				<button id="did" class="btn btn-success btn-lg"><i class="icon-thumbs-up"></i> Did it!</button>
-			</div>
+		</div>
+	</form>
+</template>
+
+<template name="what">
+	<div class="component">
+		<ul class="list-unstyled">
+			{{#each recents}}
+			<li><button class="btn btn-link">
+				<strong>{{what}}</strong> {{fromNow when}}
+			</button></li>
+			{{/each}}
+		</ul>
+		<form action="" class="input-group">
+			<input type="text" name="what" class="form-control" placeholder="What did you do??" value="{{Qwhat}}">
+			<a class="close"><i class="icon-remove"></i></a>
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-default"><i class="icon-thumbs-up"></i></button>
+			</span>
 		</form>
+	</div>
+</template>
+
+<template name="when">
+	<div class="component">
+		<ul class="list-inline">
+		{{#each quickTimes}}
+			<li><button class="btn btn-link">{{{name}}}</button></li>
+		{{/each}}
+		</ul>
+		<form action="" class="input-group">
+			<input type="text" name="when" class="form-control" placeholder="When did you do it???" value="{{date Qwhen}}">
+			<a class="close"><i class="icon-remove"></i></a>
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-default"><i class="icon-thumbs-up"></i></button>
+			</span>
+		</form>
+		<small class="text-muted">Any date and time, such as <em>July 4</em> or <em>Feb 2004</em> or <em>5/27/88 11:39 pm</em></small>
 	</div>
 </template>
 
@@ -64,6 +112,10 @@
 
 <template name="entry">
 	<li class="list-group-item entry">
+		<div class="actions">
+			<button class="btn btn-xs btn-danger delete"><i class="icon-remove"></i></button><br>
+			<!-- <button class="btn btn-xs btn-default edit"><i class="icon-pencil"></i></button> -->
+		</div>
 		<div class="text-muted">{{date when}}</div>
 		<h3>{{what}}</h3>
 		<small>{{how}}</small>
@@ -76,7 +128,7 @@
 		Got a haircut? <em>Changed your sheets?</em>
 	</p>
 	<p>
-		Record the little things you do all the time but never think about. Instantly review your history and answer those stupid questions.
+		Record the little things you do all the time but never think about. Instantly review your history and show your memory who's boss.
 	</p>
 	<h3>Remember the common things.</h3>
 	<br>

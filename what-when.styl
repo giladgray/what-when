@@ -10,16 +10,13 @@ transition()
 	-o-transition: arguments
 	transition: arguments
 
-// h1, #what, #when
-// 	font-size: 40px
-// 	line-height: 1em
-
 $giantFont = 40px
 $bigFont = 30px
 $regFont = 20px
 $smallFont = 16px
 
 body
+	margin: auto
 	background: #eee
 
 .container
@@ -38,33 +35,118 @@ body
 	line-height: 1em
 	padding: .5em 1em
 
+	input, button
+		font-size: $regFont
+
+	button
+		outline: none
+
+	> div
+		.btn-question
+			display: table
+			width: 100%
+			padding: 8px $regFont
+
+			&.filled
+				.word, .value
+					display: table-cell
+					vertical-align: middle
+
+				.word
+					width: 0
+					opacity: 0.7
+
+				.value
+					width: 100%
+					padding-left: $regFont
+					font-size: 50%
+					line-height: 1em
+					white-space: normal
+
+
+		.component
+			height: 0
+			min-height: 0
+			transition: height .3s ease
+			padding: 0 20px
+			background: #eee
+			border: 1px solid #ccc
+
+			font-size: $regFont
+			overflow: hidden
+
+			// list of sugggested items
+			li
+				line-height: 1em
+				margin: 5px
+
+				.btn-link
+					padding: 0
+
+			// the freeform text field and submit button
+			.input-group
+				input, button
+					height: auto
+					padding: 10px
+					line-height: 1em
+
+				input
+					text-align: center
+					padding-top: 8px
+					padding-bottom: 8px
+
+			small
+				display: block
+				padding-top: 5px
+				font-size: 70%
+				line-height: 1em
+				font-style: italic
+				em
+					font-style: normal
+
+			.close
+				absolute: top 11px right 50px
+
+		// full-size when active
+		&.active#what .component
+			height: 175px
+
+		&.active#when .component
+			height: 125px
+
+	.question
+		> div
+			text-transform: lowercase
+			&.you, &.what, &.when
+				font-weight: 900
+			&.where, &.why
+				font-size: .8em
+			i
+				display: inline-block
+				width: 30px
+				height: 1em
+				font-size: .7em
+				text-align: center
+				vertical-align: baseline
+				text-decoration: none
+				margin-right: 10px
+
+		button
+			font-weight: 900
+			font-size: $bigFont
+			margin-top: 8px
+
+
 	h1
 		padding: 6px 12px
 
-	#what, #when, #how
-		margin: .5em 0
-
 	#what, #when
+		margin: .5em 0
 		position: relative
 
-		input, button
+		> button
 			font-size: $giantFont
 			line-height: 1em
-			text-align: center
-			height: auto
-
-		.add-on
-			absolute: right 15px bottom 15px
-
-			i
-				size: 1em
-
-	#how
-		textarea
-			font-size: $bigFont
-			height: 100%
-			max-width: 100%
-			max-height: 224px
 
 	#done
 		button
@@ -72,27 +154,6 @@ body
 
 			&#did
 				font-weight: bold
-
-	.close
-		font-size: $bigFont;
-
-	&.mini
-		h1
-			padding-left: 1em
-		h1, #what, #when
-			display: inline-block
-			width: auto
-			margin: 0
-			float: left
-
-			input
-				display: inline-block
-				width: 3.3em
-			i
-				display: none
-
-		#how, #done
-			display: none
 
 #login
 	font-size: $smallFont
@@ -107,11 +168,19 @@ body
 
 #history
 	font-size: $regFont
+	overflow: hidden
 
 	.entry
 		h3
 			margin: .25em 0
 
+		.actions
+			absolute: top 50% right -30px
+			margin-top: -27px
+			transition: right .3s ease
 
-body
-	margin: auto
+			button
+				margin-bottom: 10px
+
+		&:hover .actions
+			right: 10px
