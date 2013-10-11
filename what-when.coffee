@@ -2,6 +2,20 @@ Entries = new Meteor.Collection 'entry'
 
 if Meteor.isClient
 
+  # today's date at noon
+  today = -> moment().startOf('day').add('hours', 12)
+
+  # removes the given class from all elements (optionally within scope selector)
+  # and applies it to this element. useful for singleton class, such as .active
+  $.fn.takeClass = (targetClass, scope='') ->
+    $(scope + " ." + targetClass).removeClass targetClass
+    @addClass targetClass
+
+  # removes the old class and adds the new one
+  $.fn.swapClass = (oldClass, newClass) ->
+    @removeClass(oldClass).addClass(newClass)
+
+  # executes the block if the given array is empty
   Handlebars.registerHelper 'ifEmpty', (array, options) ->
     console.log array
     if array and (array.length or array.count())
@@ -9,8 +23,12 @@ if Meteor.isClient
     else
       options.fn @
 
-  Template.entry.helpers
-    date: (date) -> moment(date).format 'lll' # short localized datetime
+  # time from now string (2 weeks ago)
+  Handlebars.registerHelper 'fromNow', (date) ->
+    return new Handlebars.SafeString moment(date).fromNow()
+
+  # short localized datetime (Oct 9 2013 6:12 PM)
+  Handlebars.registerHelper 'date', (date) -> moment(date).format 'lll'
 
   Template.history.entries = ->
     Entries.find { who: Meteor.userId() },
