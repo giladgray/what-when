@@ -71,6 +71,10 @@ small
 		font-weight: 900
 		margin-top: 0
 
+.xs-hidden
+	@media (max-width: 600px)
+		display: none !important
+
 #new-entry
 	line-height: 1em
 	padding: .5em 1em
@@ -137,7 +141,7 @@ small
 					padding-top: 8px
 					padding-bottom: 8px
 
-			small
+			.help-text
 				display: block
 				padding-top: 5px
 				font-size: 70%

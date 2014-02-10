@@ -77,6 +77,7 @@ if Meteor.isClient
   }, {
     name: 'last weekend'
     time: -> today().startOf('week').subtract('days', 1)
+    class: 'xs-hidden'
   }]
 
   Template.when.events

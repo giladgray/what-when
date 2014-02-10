@@ -1,5 +1,5 @@
 <head>
-  <title>What, When?</title>
+	<title>What, When?</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 		<div id="what">
 			<button class="btn btn-question btn-primary {{#if what}}filled{{/if}} ">
 				<span class="word">
-					<span>What </span><i class="icon-asterisk"></i>
+					<span>What </span><i class="glyphicon glyphicon-asterisk"></i>
 				</span>
 				{{#if what}}
 				<span class="value">{{what}}</span>
@@ -42,7 +42,7 @@
 		<div id="when">
 			<button class="btn btn-question btn-primary {{#if when}}filled{{/if}}">
 				<span class="word">
-					<span>When </span><i class="icon-time"></i>
+					<span>When </span><i class="glyphicon glyphicon-time"></i>
 				</span>
 				{{#if when}}
 				<span class="value">{{fromNow when}}</span>
@@ -52,7 +52,7 @@
 		</div>
 		<div id="done" class="text-right">
 			<div id="new-data">
-				<button id="did" class="btn btn-success btn-lg {{#unless ready}}disabled{{/unless}}"><i class="icon-thumbs-up"></i> Did it!</button>
+				<button id="did" class="btn btn-success btn-lg {{#unless ready}}disabled{{/unless}}"><i class="glyphicon glyphicon-thumbs-up"></i> Did it!</button>
 			</div>
 		</div>
 	</form>
@@ -63,15 +63,15 @@
 		<ul class="list-unstyled">
 			{{#each recents}}
 			<li><button class="btn btn-link">
-				<strong>{{what}}</strong> {{fromNow when}}
+				<strong>{{what}}</strong> <small>{{fromNow when}}</small>
 			</button></li>
 			{{/each}}
 		</ul>
 		<form action="" class="input-group">
 			<input type="text" name="what" class="form-control" placeholder="What did you do??" value="{{Qwhat}}">
-			<a class="close"><i class="icon-remove"></i></a>
+			{{!-- <a class="close"><i class="glyphicon glyphicon-remove"></i></a> --}}
 			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default"><i class="icon-thumbs-up"></i></button>
+				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-thumbs-up"></i></button>
 			</span>
 		</form>
 	</div>
@@ -80,18 +80,19 @@
 <template name="when">
 	<div class="component">
 		<ul class="list-inline">
-		{{#each quickTimes}}
-			<li><button class="btn btn-link">{{{name}}}</button></li>
-		{{/each}}
+			{{#each quickTimes}}
+			<li><button class="btn btn-link {{class}}">{{{name}}}</button></li>
+			{{/each}}
 		</ul>
 		<form action="" class="input-group">
 			<input type="text" name="when" class="form-control" placeholder="When did you do it???" value="{{date Qwhen}}">
-			<a class="close"><i class="icon-remove"></i></a>
+			<a class="close"><i class="glyphicon glyphicon-remove"></i></a>
 			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default"><i class="icon-thumbs-up"></i></button>
+				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-thumbs-up"></i></button>
 			</span>
 		</form>
-		<small class="text-muted">Any date and time, such as <em>July 4</em> or <em>Feb 2004</em> or <em>5/27/88 11:39 pm</em></small>
+		<small class="help-text text-muted">Any date and time, such as <em>July 4</em> or <em>Feb 2004</em>
+			<span class="xs-hidden">or <em>5/27/88 11:39 pm</em></span></small>
 	</div>
 </template>
 
@@ -113,8 +114,8 @@
 <template name="entry">
 	<li class="list-group-item entry">
 		<div class="actions">
-			<button class="btn btn-xs btn-danger delete"><i class="icon-remove"></i></button><br>
-			<!-- <button class="btn btn-xs btn-default edit"><i class="icon-pencil"></i></button> -->
+			<button class="btn btn-xs btn-danger delete"><i class="glyphicon glyphicon-remove"></i></button><br>
+			<!-- <button class="btn btn-xs btn-default edit"><i class="glyphicon glyphicon-pencil"></i></button> -->
 		</div>
 		<div class="text-muted">{{date when}}</div>
 		<h3>{{what}}</h3>
@@ -133,4 +134,7 @@
 	<h3>Remember the common things.</h3>
 	<br>
 	{{loginButtons}}
+	<!-- <button class="btn btn-facebook btn-primary">
+		<i class="glyphicon glyphicon-facebook-sign"></i> Sign in with Facebook
+	</button> -->
 </template>
