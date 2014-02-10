@@ -4,11 +4,18 @@ size($w, $h = $w)
 	width: $w
 	height: $h
 
+_prefix(tag, args)
+	-webkit-{tag}: args
+	-moz-{tag}: args
+	-o-{tag}: args
+	{tag}: args
+
 transition()
-	-webkit-transition: arguments
-	-moz-transition: arguments
-	-o-transition: arguments
-	transition: arguments
+	_prefix: 'transition', arguments
+
+transform()
+	_prefix: 'transform', arguments
+
 
 $giantFont = 40px
 $bigFont = 30px
