@@ -16,19 +16,53 @@ transition()
 transform()
 	_prefix: 'transform', arguments
 
+$giantFont = 2em
+$bigFont = 1.5em
+$regFont = 1em
+$smallFont = .8em
 
-$giantFont = 40px
-$bigFont = 30px
-$regFont = 20px
-$smallFont = 16px
+$baseFontSize = 20px
+$smallFontSize = 14px
 
 body
 	margin: auto
 	background: #eee
 
+h1
+	font-size: $giantFont
+
+h2
+	font-size: $bigFont
+
+h3
+	font-size: $regFont * 1.25
+
+h4
+	font-size: $regFont
+	font-weight: bold
+
+h5
+	font-size: $smallFont
+	font-weight: bold
+	text-transform: uppercase
+
+h6
+	font-size: $smallFont
+	text-transform: uppercase
+
+small
+	font-size: $smallFont
+
+.close
+	font-size: 1.2em
+
 .container
 	width: 600px
 	margin: $giantFont auto
+
+	font-size: $baseFontSize
+	@media (max-width: 600px)
+		font-size: $smallFontSize
 
 	> h3
 		margin-top: 0
@@ -38,7 +72,6 @@ body
 		margin-top: 0
 
 #new-entry
-	font-size: $giantFont
 	line-height: 1em
 	padding: .5em 1em
 
@@ -75,7 +108,7 @@ body
 			height: 0
 			min-height: 0
 			transition: height .3s ease
-			padding: 0 20px
+			padding: 0 1em
 			background: #eee
 			border: 1px solid #ccc
 
@@ -83,18 +116,20 @@ body
 			overflow: hidden
 
 			// list of sugggested items
-			li
-				line-height: 1em
-				margin: 5px
+			ul
+				margin-bottom: .5em
+				> li
+					line-height: 1em
+					margin: .25em
 
-				.btn-link
-					padding: 0
+					.btn-link
+						padding: 0
 
 			// the freeform text field and submit button
 			.input-group
 				input, button
-					height: auto
-					padding: 10px
+					height: 2em
+					padding: .5em
 					line-height: 1em
 
 				input
@@ -116,10 +151,10 @@ body
 
 		// full-size when active
 		&.active#what .component
-			height: 175px
+			height: 9em
 
 		&.active#when .component
-			height: 125px
+			height: 6.25em
 
 	.question
 		> div
